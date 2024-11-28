@@ -1,0 +1,1 @@
+{"version":3,"file":"searching.js","sourceRoot":"","sources":["../../src/shared/searching.ts"],"names":[],"mappings":";;;AACO,MAAM,MAAM,GAAG,CAAC,KAAa,EAAE,MAAgB,EAAE,EAAE;IACtD,MAAM,WAAW,GAAG,MAAM,CAAC,GAAG,CAAC,KAAK,CAAC,EAAE,CAAC,GAAG,KAAK,WAAW,KAAK,IAAI,CAAC,CAAC,IAAI,CAAC,MAAM,CAAC,CAAC;IACnF,OAAO,WAAW,CAAC;AACrB,CAAC,CAAC;AAHS,QAAA,MAAM,UAGf"}

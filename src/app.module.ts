@@ -1,22 +1,22 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { LprdTrafficLinksModule } from './lprd-traffic-links/lprd-traffic-links.module';
-import { LprdTrafficLinks } from './lprd-traffic-links/lprd-traffic-links.entity';
-import { LprdTrafficLinksCategory } from './lprd-traffic-links/categories/categories.entity';
-import { LprdTrafficLinkCategoriesModule } from './lprd-traffic-links/categories/categories.module';
-import { LprdTrafficLinksClient } from './lprd-traffic-links/clients/clients.entity';
-import { LprdTrafficLinkClientsModule } from './lprd-traffic-links/clients/clients.module';
-import { LprdTrafficLinksCampaign } from './lprd-traffic-links/campaigns/campaigns.entity';
-import { MaxDeliveryClientModule } from './max-delivery-client/max-delivery-client.module';
-import { MaxDeliveryClient } from './max-delivery-client/max-delivery-client.entity';
-import { MaxDeliveryCampaignModule } from './max-delivery-campaign/max-delivery-campaign.module';
-import { MaxDeliveryCampaign } from './max-delivery-campaign/max-delivery-campaign.entity';
-import { LprdtrafficsourceModule } from './lprdtrafficsource/lprdtrafficsource.module';
-import { LprdTrafficSource } from './lprdtrafficsource/lprdtrafficsource.entity';
-import { LprdTrafficWebsitesModule } from './lprd-traffic-websites/lprd-traffic-websites.module';
-import { LprdTrafficWebsite } from './lprd-traffic-websites/lprd-traffic-websites.entity';
-import { UserModule } from './user/user.module';
-import { User } from './user/user.entity';
+import { LprdTrafficLinksModule } from './modules/lprd-traffic-links/lprd-traffic-links.module';
+import { LprdTrafficLinks } from './modules/lprd-traffic-links/entities/lprd-traffic-links.entity';
+import { LprdTrafficLinksCategory } from './modules/lprd-traffic-links/categories/entities/categories.entity';
+import { LprdTrafficLinkCategoriesModule } from './modules/lprd-traffic-links/categories/categories.module';
+import { LprdTrafficLinksClient } from './modules/lprd-traffic-links/clients/entities/clients.entity';
+import { LprdTrafficLinkClientsModule } from './modules/lprd-traffic-links/clients/clients.module';
+import { LprdTrafficLinksCampaign } from './modules/lprd-traffic-links/campaigns/entities/campaigns.entity';
+import { MaxDeliveryClientModule } from './modules/max-delivery-client/max-delivery-client.module';
+import { MaxDeliveryClient } from './modules/max-delivery-client/entities/max-delivery-client.entity';
+import { MaxDeliveryCampaignModule } from './modules/max-delivery-campaign/max-delivery-campaign.module';
+import { MaxDeliveryCampaign } from './modules/max-delivery-campaign/entities/max-delivery-campaign.entity';
+import { LprdtrafficsourceModule } from './modules/lprdtrafficsource/lprdtrafficsource.module';
+import { LprdTrafficSource } from './modules/lprdtrafficsource/entities/lprdtrafficsource.entity';
+import { LprdTrafficWebsitesModule } from './modules/lprd-traffic-websites/lprd-traffic-websites.module';
+import { LprdTrafficWebsite } from './modules/lprd-traffic-websites/entities/lprd-traffic-websites.entity';
+import { UserModule } from './modules/user/user.module';
+import { User } from './modules/user/entities/user.entity';
 
 @Module({
   imports: [
