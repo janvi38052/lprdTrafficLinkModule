@@ -1,88 +1,157 @@
-import { IsInt, IsNotEmpty, IsString, IsEnum, IsOptional, Min, Max, IsPositive } from 'class-validator';
-import { ConfidenceScore } from '../entities/lprd-traffic-links.entity';
+import { replaceMultipleSubstring } from 'src/utils/utils';
+import { ErrorMessages } from 'src/utils/error-messages';
+import {
+  ArrayMinSize,
+  IsArray,
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+  Max,
+  MaxLength,
+  Min,
+  MinLength,
+  ValidateIf,
+  IsBoolean,  // Replaced IsBooleanValue with IsBoolean
+} from 'class-validator';
 
-export class UpdateLprdTrafficLinksDto {
-  @IsOptional()
+ class UpdateLprdTrafficLinkDto {
   @IsInt()
-  @IsPositive()
-  approved?: number;
+  @IsOptional()  // Made optional for update
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
+  traffic_source_id?: number;
 
-  // @IsOptional()
-  // @IsInt()
-  // @IsPositive()
-  // traffic_source_id?: number;
-
-  // @IsOptional()
-  // @IsInt()
-  // @IsPositive()
-  // traffic_website_id?: number;
+  @IsInt()
+  @IsOptional()  // Made optional for update
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
+  traffic_website_id?: number;
 
   @IsOptional()
+  @Min(1)
+  @Max(100)
   @IsInt()
-  @IsPositive()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   max_provider_delivery?: number;
 
-  @IsOptional()
-  @IsInt()
-  @IsPositive()
-  ignore_campaign_active_status?: number;
-
-  @IsOptional()
-  @IsString()
+  @MinLength(2, {
+    message: replaceMultipleSubstring(ErrorMessages.MIN_CHARACTERS_REQUIRED, {
+      '{LENGTH}': 2,
+    }),
+  })
+  @MaxLength(64, {
+    message: replaceMultipleSubstring(ErrorMessages.MAX_CHARACTERS_REQUIRED, {
+      '{LENGTH}': 64,
+    }),
+  })
+  @IsOptional()  // Made optional for update
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   locale?: string;
 
   @IsOptional()
+  @IsBoolean()  // Replaced IsBooleanValue with IsBoolean
   @IsInt()
-  @IsPositive()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
+  approved?: number;
+
+  @IsOptional()
+  @IsBoolean()  // Replaced IsBooleanValue with IsBoolean
+  @IsInt()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
+  ignore_campaign_active_status?: number;
+
+  @IsOptional()
+  @IsBoolean()  // Replaced IsBooleanValue with IsBoolean
+  @IsInt()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   path_style_id?: number;
 
   @IsOptional()
+  @IsBoolean()  // Replaced IsBooleanValue with IsBoolean
   @IsInt()
-  @IsPositive()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   use_radius_range?: number;
 
   @IsOptional()
+  @IsBoolean()  // Replaced IsBooleanValue with IsBoolean
   @IsInt()
-  @IsPositive()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   use_ip_blacklist?: number;
 
   @IsOptional()
+  @IsBoolean()  // Replaced IsBooleanValue with IsBoolean
   @IsInt()
-  @IsPositive()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   lock_category?: number;
 
   @IsOptional()
+  @IsBoolean()  // Replaced IsBooleanValue with IsBoolean
   @IsInt()
-  @IsPositive()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   use_capping?: number;
 
+  updated_by?: string;
+
   @IsOptional()
+  @IsBoolean()  // Replaced IsBooleanValue with IsBoolean
   @IsInt()
-  @IsPositive()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   bypass_time_based_capping?: number;
 
   @IsOptional()
+  @IsBoolean()  // Replaced IsBooleanValue with IsBoolean
   @IsInt()
-  @IsPositive()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   block_bots?: number;
 
   @IsOptional()
   @IsInt()
-  @Min(0)
+  @IsBoolean()  // Replaced IsBooleanValue with IsBoolean
+  test_traffic?: number;
+
+  @ValidateIf((o) => o.test_traffic === 1)
+  @Min(1)
   @Max(100)
+  @IsInt()
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   test_traffic_percentage?: number;
 
   @IsOptional()
-  @IsString()
-  category_ids?: string;
-
-  @IsOptional()
-  @IsString()
+  @MinLength(2, {
+    message: replaceMultipleSubstring(ErrorMessages.MIN_CHARACTERS_REQUIRED, {
+      '{LENGTH}': 2,
+    }),
+  })
+  @MaxLength(64, {
+    message: replaceMultipleSubstring(ErrorMessages.MAX_CHARACTERS_REQUIRED, {
+      '{LENGTH}': 64,
+    }),
+  })
+  @IsOptional()  // Made optional for update
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
   tag?: string;
 
+  @ValidateIf((o) => o.lock_category === 0)
+  @IsNumber({}, { each: true })
+  @ArrayMinSize(1)
+  @IsArray()
+  @IsOptional()  // Made optional for update
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
+  categories?: number[];
+
   @IsOptional()
-  @IsInt()
-  @Min(0)
-  @Max(10)
-  quality_score?: number;
+  @IsNumber({}, { each: true })
+  @ArrayMinSize(1)
+  @IsArray()
+  @IsOptional()  // Made optional for update
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
+  clients?: number[];
+
+  @IsOptional()
+  @IsNumber({}, { each: true })
+  @ArrayMinSize(1)
+  @IsArray()
+  @IsOptional()  // Made optional for update
+  @IsNotEmpty({ message: ErrorMessages.FIELD_REQUIRED })
+  campaigns?: number[];
 }
+export default UpdateLprdTrafficLinkDto;

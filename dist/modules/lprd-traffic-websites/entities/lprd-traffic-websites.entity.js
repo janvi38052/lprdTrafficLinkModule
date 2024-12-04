@@ -24,6 +24,14 @@ __decorate([
     __metadata("design:type", String)
 ], LprdTrafficWebsite.prototype, "name", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], LprdTrafficWebsite.prototype, "default_url", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], LprdTrafficWebsite.prototype, "track_url", void 0);
+__decorate([
     (0, typeorm_1.OneToMany)(() => lprd_traffic_links_entity_1.LprdTrafficLinks, (trafficLink) => trafficLink.trafficWebsite),
     __metadata("design:type", Array)
 ], LprdTrafficWebsite.prototype, "trafficLinks", void 0);

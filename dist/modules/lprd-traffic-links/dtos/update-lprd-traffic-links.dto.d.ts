@@ -1,17 +1,23 @@
-export declare class UpdateLprdTrafficLinksDto {
-    approved?: number;
+declare class UpdateLprdTrafficLinkDto {
+    traffic_source_id?: number;
+    traffic_website_id?: number;
     max_provider_delivery?: number;
-    ignore_campaign_active_status?: number;
     locale?: string;
+    approved?: number;
+    ignore_campaign_active_status?: number;
     path_style_id?: number;
     use_radius_range?: number;
     use_ip_blacklist?: number;
     lock_category?: number;
     use_capping?: number;
+    updated_by?: string;
     bypass_time_based_capping?: number;
     block_bots?: number;
+    test_traffic?: number;
     test_traffic_percentage?: number;
-    category_ids?: string;
     tag?: string;
-    quality_score?: number;
+    categories?: number[];
+    clients?: number[];
+    campaigns?: number[];
 }
+export default UpdateLprdTrafficLinkDto;

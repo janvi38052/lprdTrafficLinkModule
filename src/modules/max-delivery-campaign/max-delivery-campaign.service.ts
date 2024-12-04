@@ -15,7 +15,7 @@ export class MaxDeliveryCampaignService {
   async create(data: CreateMaxDeliveryCampaignDto): Promise<MaxDeliveryCampaign> {
     const campaign = this.campaignRepository.create({
       ...data,
-      active: data.active ? 1 : 0, // Convert boolean to number
+      active: data.active ? 1 : 0, 
     });
     return this.campaignRepository.save(campaign);
   }
@@ -31,7 +31,7 @@ export class MaxDeliveryCampaignService {
   async update(id: number, data: UpdateMaxDeliveryCampaignDto): Promise<MaxDeliveryCampaign> {
     const transformedData = {
       ...data,
-      active: data.active !== undefined ? (data.active ? 1 : 0) : undefined, // Convert boolean to number
+      active: data.active !== undefined ? (data.active ? 1 : 0) : undefined, 
     };
     await this.campaignRepository.update(id, transformedData);
     return this.findOne(id);

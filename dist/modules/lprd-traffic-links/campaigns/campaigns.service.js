@@ -21,6 +21,37 @@ let LprdTrafficLinksCampaignService = class LprdTrafficLinksCampaignService {
     constructor(campaignRepository) {
         this.campaignRepository = campaignRepository;
     }
+    async createLprdTrafficLinkCampaign(values, transactionalEntityManager) {
+        await transactionalEntityManager
+            .createQueryBuilder()
+            .insert()
+            .into(campaigns_entity_1.LprdTrafficLinksCampaign)
+            .values(values)
+            .execute();
+        const trafficLinkCampaigns = values.map((value) => ({
+            traffic_link_id: value.lprd_traffic_link_id,
+            campaign_id: value.campaign_id,
+        }));
+    }
+    async deleteLprdTrafficLinkCampaignByTrafficLinkId(lprdTrafficLinkId, transactionalEntityManager) {
+        await transactionalEntityManager.createQueryBuilder()
+            .delete()
+            .from(campaigns_entity_1.LprdTrafficLinksCampaign)
+            .where('lprd_traffic_link_id = :lprdTrafficLinkId', { lprdTrafficLinkId })
+            .execute();
+    }
+    async deleteLprdTrafficLinkCampaign(removedElements, lprdTrafficLinkId, transactionalEntityManager) {
+        await transactionalEntityManager.createQueryBuilder()
+            .delete()
+            .from(campaigns_entity_1.LprdTrafficLinksCampaign)
+            .where('lprd_traffic_link_id = :lprdTrafficLinkId', { lprdTrafficLinkId })
+            .andWhere('campaign_id IN (:...removedElements)', { removedElements })
+            .execute();
+        let trafficLinkCampaigns = [];
+        for (let i = 0; i < removedElements.length; i++) {
+            trafficLinkCampaigns.push({ traffic_link_id: lprdTrafficLinkId, campaign_id: removedElements[i] });
+        }
+    }
     async create(data) {
         const campaign = this.campaignRepository.create(data);
         return this.campaignRepository.save(campaign);

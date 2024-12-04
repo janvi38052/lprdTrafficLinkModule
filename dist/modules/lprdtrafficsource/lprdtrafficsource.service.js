@@ -38,6 +38,9 @@ let LprdTrafficSourceService = class LprdTrafficSourceService {
     async remove(id) {
         await this.lprdTrafficSourceRepository.delete(id);
     }
+    async getTrafficSourceById(id) {
+        return this.findOne(id);
+    }
 };
 exports.LprdTrafficSourceService = LprdTrafficSourceService;
 exports.LprdTrafficSourceService = LprdTrafficSourceService = __decorate([

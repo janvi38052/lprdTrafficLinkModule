@@ -9,10 +9,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.LprdTrafficLinkClientsModule = void 0;
 const common_1 = require("@nestjs/common");
 const clients_service_1 = require("./clients.service");
-const clients_controller_1 = require("./clients.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const clients_entity_1 = require("./entities/clients.entity");
 const lprd_traffic_links_entity_1 = require("../entities/lprd-traffic-links.entity");
+;
 let LprdTrafficLinkClientsModule = class LprdTrafficLinkClientsModule {
 };
 exports.LprdTrafficLinkClientsModule = LprdTrafficLinkClientsModule;
@@ -20,7 +20,7 @@ exports.LprdTrafficLinkClientsModule = LprdTrafficLinkClientsModule = __decorate
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([clients_entity_1.LprdTrafficLinksClient, lprd_traffic_links_entity_1.LprdTrafficLinks])],
         providers: [clients_service_1.LprdTrafficLinksClientService],
-        controllers: [clients_controller_1.LprdTrafficLinksClientController],
+        controllers: [],
         exports: [clients_service_1.LprdTrafficLinksClientService]
     })
 ], LprdTrafficLinkClientsModule);

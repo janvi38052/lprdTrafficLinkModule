@@ -6,11 +6,9 @@ export class MaxDeliveryClient  {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column({ type: 'int', unsigned: true })
+  @Column({ type: 'int' })
   client_id: number;
 
-//   @Column({ type: 'int', unsigned: true })
-//   tid: number;
 
   @Column({ type: 'int', nullable: false, default: 0 })
   max_delivery_percentage: number;

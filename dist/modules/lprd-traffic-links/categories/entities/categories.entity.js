@@ -16,7 +16,7 @@ let LprdTrafficLinksCategory = class LprdTrafficLinksCategory {
 };
 exports.LprdTrafficLinksCategory = LprdTrafficLinksCategory;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)('increment'),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ type: 'int' }),
     __metadata("design:type", Number)
 ], LprdTrafficLinksCategory.prototype, "id", void 0);
 __decorate([
@@ -24,11 +24,15 @@ __decorate([
     __metadata("design:type", String)
 ], LprdTrafficLinksCategory.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.ManyToOne)(() => lprd_traffic_links_entity_1.LprdTrafficLinks, (trafficLink) => trafficLink.categories),
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], LprdTrafficLinksCategory.prototype, "lprd_traffic_link_id", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => lprd_traffic_links_entity_1.LprdTrafficLinks, lprdTrafficLink => lprdTrafficLink.categories, { onDelete: 'CASCADE' }),
     (0, typeorm_1.JoinColumn)({ name: 'lprd_traffic_link_id' }),
     __metadata("design:type", lprd_traffic_links_entity_1.LprdTrafficLinks)
 ], LprdTrafficLinksCategory.prototype, "lprdTrafficLink", void 0);
 exports.LprdTrafficLinksCategory = LprdTrafficLinksCategory = __decorate([
-    (0, typeorm_1.Entity)('lprd_traffic_links_category')
+    (0, typeorm_1.Entity)('lprd_traffic_links_categories')
 ], LprdTrafficLinksCategory);
 //# sourceMappingURL=categories.entity.js.map

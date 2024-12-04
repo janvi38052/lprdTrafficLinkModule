@@ -21,22 +21,38 @@ let LprdTrafficLinksClientService = class LprdTrafficLinksClientService {
     constructor(clientRepository) {
         this.clientRepository = clientRepository;
     }
-    async create(data) {
-        const client = this.clientRepository.create(data);
-        return this.clientRepository.save(client);
+    async createLprdTrafficLinkClient(values, transactionalEntityManager) {
+        await transactionalEntityManager
+            .createQueryBuilder()
+            .insert()
+            .into(clients_entity_1.LprdTrafficLinksClient)
+            .values(values)
+            .execute();
+        const trafficLinkClients = values.map((value) => ({
+            traffic_link_id: value.lprd_traffic_link_id,
+            client_id: value.client_id,
+        }));
     }
-    async findAll() {
-        return this.clientRepository.find();
+    async deleteLprdTrafficLinkClientByTrafficLinkId(lprdTrafficLinkId, transactionalEntityManager) {
+        await transactionalEntityManager
+            .createQueryBuilder()
+            .delete()
+            .from(clients_entity_1.LprdTrafficLinksClient)
+            .where('lprd_traffic_link_id = :lprdTrafficLinkId', { lprdTrafficLinkId })
+            .execute();
     }
-    async findOne(id) {
-        return this.clientRepository.findOne({ where: { id } });
-    }
-    async update(id, data) {
-        await this.clientRepository.update(id, data);
-        return this.findOne(id);
-    }
-    async remove(id) {
-        await this.clientRepository.delete(id);
+    async deleteLprdTrafficLinkClient(removedElements, lprdTrafficLinkId, transactionalEntityManager) {
+        await transactionalEntityManager
+            .createQueryBuilder()
+            .delete()
+            .from(clients_entity_1.LprdTrafficLinksClient)
+            .where('lprd_traffic_link_id = :lprdTrafficLinkId', { lprdTrafficLinkId })
+            .andWhere('client_id IN (:...removedElements)', { removedElements })
+            .execute();
+        let trafficLinkClients = [];
+        for (let i = 0; i < removedElements.length; i++) {
+            trafficLinkClients.push({ traffic_link_id: lprdTrafficLinkId, client_id: removedElements[i] });
+        }
     }
 };
 exports.LprdTrafficLinksClientService = LprdTrafficLinksClientService;

@@ -11,14 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LprdTrafficLinks = exports.ConfidenceScore = void 0;
 const typeorm_1 = require("typeorm");
+const lprd_traffic_websites_entity_1 = require("../../lprd-traffic-websites/entities/lprd-traffic-websites.entity");
+const lprdtrafficsource_entity_1 = require("../../lprdtrafficsource/entities/lprdtrafficsource.entity");
 const categories_entity_1 = require("../categories/entities/categories.entity");
 const clients_entity_1 = require("../clients/entities/clients.entity");
 const campaigns_entity_1 = require("../campaigns/entities/campaigns.entity");
+const user_entity_1 = require("../../user/entities/user.entity");
 const max_delivery_client_entity_1 = require("../../max-delivery-client/entities/max-delivery-client.entity");
 const max_delivery_campaign_entity_1 = require("../../max-delivery-campaign/entities/max-delivery-campaign.entity");
-const lprdtrafficsource_entity_1 = require("../../lprdtrafficsource/entities/lprdtrafficsource.entity");
-const lprd_traffic_websites_entity_1 = require("../../lprd-traffic-websites/entities/lprd-traffic-websites.entity");
-const user_entity_1 = require("../../user/entities/user.entity");
 var ConfidenceScore;
 (function (ConfidenceScore) {
     ConfidenceScore["VeryConfident"] = "Very Confident";
@@ -27,7 +27,7 @@ var ConfidenceScore;
     ConfidenceScore["Low"] = "Low";
     ConfidenceScore["VeryLow"] = "Very Low";
 })(ConfidenceScore || (exports.ConfidenceScore = ConfidenceScore = {}));
-let LprdTrafficLinks = class LprdTrafficLinks extends typeorm_1.BaseEntity {
+let LprdTrafficLinks = class LprdTrafficLinks {
 };
 exports.LprdTrafficLinks = LprdTrafficLinks;
 __decorate([
@@ -35,23 +35,35 @@ __decorate([
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'tinyint', width: 3, default: 0 }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "approved", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], LprdTrafficLinks.prototype, "traffic_source_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], LprdTrafficLinks.prototype, "traffic_website_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ nullable: true }),
+    __metadata("design:type", String)
+], LprdTrafficLinks.prototype, "updated_by", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int', nullable: true, default: null }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "max_provider_delivery", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'tinyint', default: 0 }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "ignore_campaign_active_status", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'varchar', length: 64, nullable: true }),
     __metadata("design:type", String)
 ], LprdTrafficLinks.prototype, "locale", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'tinyint', default: 0 }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "path_style_id", void 0);
 __decorate([
@@ -59,39 +71,62 @@ __decorate([
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "use_radius_range", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'tinyint', default: 1 }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "use_ip_blacklist", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'tinyint', default: 1 }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "lock_category", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'tinyint', default: 1 }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "use_capping", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'tinyint', default: 1 }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "bypass_time_based_capping", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'tinyint', default: 1 }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "block_bots", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'tinyint', default: 0 }),
+    __metadata("design:type", Number)
+], LprdTrafficLinks.prototype, "test_traffic", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'tinyint', default: 0 }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "test_traffic_percentage", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'text', nullable: true }),
+    __metadata("design:type", String)
+], LprdTrafficLinks.prototype, "category_ids", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'varchar', length: 255, nullable: true }),
     __metadata("design:type", String)
 ], LprdTrafficLinks.prototype, "tag", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.Column)({ type: 'int', nullable: true, default: null }),
     __metadata("design:type", Number)
 ], LprdTrafficLinks.prototype, "quality_score", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => categories_entity_1.LprdTrafficLinksCategory, (category) => category.lprdTrafficLink, { eager: true }),
+    (0, typeorm_1.ManyToOne)(() => lprd_traffic_websites_entity_1.LprdTrafficWebsite, (trafficWebsite) => trafficWebsite.trafficLinks),
+    (0, typeorm_1.JoinColumn)({ name: 'traffic_website_id' }),
+    __metadata("design:type", lprd_traffic_websites_entity_1.LprdTrafficWebsite)
+], LprdTrafficLinks.prototype, "trafficWebsite", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => lprdtrafficsource_entity_1.LprdTrafficSource, (trafficSource) => trafficSource.trafficLinks),
+    (0, typeorm_1.JoinColumn)({ name: 'traffic_source_id' }),
+    __metadata("design:type", lprdtrafficsource_entity_1.LprdTrafficSource)
+], LprdTrafficLinks.prototype, "trafficSource", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.lprdTrafficLinkUpdatedBy),
+    (0, typeorm_1.JoinColumn)({ name: 'updated_by' }),
+    __metadata("design:type", user_entity_1.User)
+], LprdTrafficLinks.prototype, "updatedByUser", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => categories_entity_1.LprdTrafficLinksCategory, (category) => category.lprdTrafficLink, { cascade: true }),
     __metadata("design:type", Array)
 ], LprdTrafficLinks.prototype, "categories", void 0);
 __decorate([
@@ -110,21 +145,6 @@ __decorate([
     (0, typeorm_1.OneToOne)(() => max_delivery_campaign_entity_1.MaxDeliveryCampaign, (deliveryCampaign) => deliveryCampaign.lprdTrafficLinkCampaign),
     __metadata("design:type", max_delivery_campaign_entity_1.MaxDeliveryCampaign)
 ], LprdTrafficLinks.prototype, "maxDeliveryCampaign", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => lprdtrafficsource_entity_1.LprdTrafficSource, (trafficSource) => trafficSource.trafficLinks),
-    (0, typeorm_1.JoinColumn)({ name: 'traffic_source_id' }),
-    __metadata("design:type", lprdtrafficsource_entity_1.LprdTrafficSource)
-], LprdTrafficLinks.prototype, "trafficSource", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => lprd_traffic_websites_entity_1.LprdTrafficWebsite, (trafficWebsite) => trafficWebsite.trafficLinks),
-    (0, typeorm_1.JoinColumn)({ name: 'traffic_website_id' }),
-    __metadata("design:type", lprd_traffic_websites_entity_1.LprdTrafficWebsite)
-], LprdTrafficLinks.prototype, "trafficWebsite", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => user_entity_1.User, (user) => user.lprdTrafficLinkUpdatedBy),
-    (0, typeorm_1.JoinColumn)({ name: 'updated_by' }),
-    __metadata("design:type", user_entity_1.User)
-], LprdTrafficLinks.prototype, "updatedByUser", void 0);
 exports.LprdTrafficLinks = LprdTrafficLinks = __decorate([
     (0, typeorm_1.Entity)('lprd_traffic_links')
 ], LprdTrafficLinks);

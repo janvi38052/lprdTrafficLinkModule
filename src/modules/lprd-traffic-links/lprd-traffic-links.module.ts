@@ -1,10 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LprdTrafficLinksController } from './lprd-traffic-links.controller';
-import { LprdTrafficLinksService } from './lprd-traffic-links.service';
+import { LprdTrafficLinksService } from './lprdTrafficLinks.service'; // Import the main service
+import { CreateLprdTrafficLinkService } from './createLprdTrafficLinks.service'; // Import the create service
+import {UpdateLprdTrafficLinkService } from './updateLprdTrafficLinks.service'; // Import the update service
 import { LprdTrafficLinks } from './entities/lprd-traffic-links.entity';
 import { LprdTrafficLinksCategory } from './categories/entities/categories.entity';
-import { LprdTrafficLinksCategoryService } from './categories/categories.service'; // Import the service
+import { LprdTrafficLinkCategoriesService } from './categories/categories.service'; // Import the category service
 import { LprdTrafficLinkClientsModule } from './clients/clients.module';
 import { LprdTrafficLinksClient } from './clients/entities/clients.entity';
 import { LprdTrafficLinksClientService } from './clients/clients.service';
@@ -26,8 +28,6 @@ import { LprdTrafficWebsiteService } from 'src/modules/lprd-traffic-websites/lpr
 import { User } from 'src/modules/user/entities/user.entity';
 import { UserModule } from 'src/modules/user/user.module';
 import { UserService } from 'src/modules/user/user.service';
-
-
 
 @Module({
   imports: [
@@ -52,16 +52,17 @@ import { UserService } from 'src/modules/user/user.service';
   ],
   controllers: [LprdTrafficLinksController],
   providers: [
-    LprdTrafficLinksService,
-    LprdTrafficLinksCategoryService,
-    LprdTrafficLinksClientService,
-    LprdTrafficLinksCampaignService,
-    MaxDeliveryClientService,
-    MaxDeliveryCampaignService,
-    LprdTrafficSourceService,
-    LprdTrafficWebsiteService,
-    UserService,
- 
+    LprdTrafficLinksService,  // Main service
+    CreateLprdTrafficLinkService,  // Service to create links
+    UpdateLprdTrafficLinkService,  // Service to update links
+    LprdTrafficLinkCategoriesService,  // Category service
+    LprdTrafficLinksClientService,  // Client service
+    LprdTrafficLinksCampaignService,  // Campaign service
+    MaxDeliveryClientService,  // Max delivery client service
+    MaxDeliveryCampaignService,  // Max delivery campaign service
+    LprdTrafficSourceService,  // Traffic source service
+    LprdTrafficWebsiteService,  // Traffic website service
+    UserService,  // User service
   ],
 })
 export class LprdTrafficLinksModule {}

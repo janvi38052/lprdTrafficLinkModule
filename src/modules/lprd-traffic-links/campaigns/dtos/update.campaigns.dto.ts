@@ -1,3 +1,9 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateLprdTrafficLinksCampaignDto } from './create-campaigns.dto';
-export class UpdateMaxDeliveryCampaignDto extends PartialType(CreateLprdTrafficLinksCampaignDto) {}
+import { IsInt, IsString, IsOptional } from 'class-validator';
+
+export class UpdateLprdTrafficLinksCampaignDto {
+
+
+  @IsString()
+  @IsOptional()
+  status?: string;
+}

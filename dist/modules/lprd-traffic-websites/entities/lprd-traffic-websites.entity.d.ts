@@ -2,5 +2,7 @@ import { LprdTrafficLinks } from 'src/modules/lprd-traffic-links/entities/lprd-t
 export declare class LprdTrafficWebsite {
     id: number;
     name: string;
+    default_url: string;
+    track_url: string;
     trafficLinks: LprdTrafficLinks[];
 }

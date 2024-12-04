@@ -16,9 +16,17 @@ let LprdTrafficLinksClient = class LprdTrafficLinksClient {
 };
 exports.LprdTrafficLinksClient = LprdTrafficLinksClient;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ type: 'int', unsigned: true }),
+    (0, typeorm_1.PrimaryGeneratedColumn)({ type: 'int' }),
     __metadata("design:type", Number)
 ], LprdTrafficLinksClient.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], LprdTrafficLinksClient.prototype, "client_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], LprdTrafficLinksClient.prototype, "lprd_traffic_link_id", void 0);
 __decorate([
     (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
     __metadata("design:type", String)

@@ -12,37 +12,54 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LprdTrafficLinksCategoryService = void 0;
-const common_1 = require("@nestjs/common");
+exports.LprdTrafficLinkCategoriesService = void 0;
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const categories_entity_1 = require("./entities/categories.entity");
-let LprdTrafficLinksCategoryService = class LprdTrafficLinksCategoryService {
-    constructor(lprdTrafficLinksCategoryRepository) {
-        this.lprdTrafficLinksCategoryRepository = lprdTrafficLinksCategoryRepository;
+let LprdTrafficLinkCategoriesService = class LprdTrafficLinkCategoriesService {
+    constructor(lprdTrafficLinkCategoryRepository) {
+        this.lprdTrafficLinkCategoryRepository = lprdTrafficLinkCategoryRepository;
     }
-    async create(data) {
-        const category = this.lprdTrafficLinksCategoryRepository.create(data);
-        return this.lprdTrafficLinksCategoryRepository.save(category);
+    async createLprdTrafficLinkCategory(values, transactionalEntityManager) {
+        const trafficLinkCategory = await transactionalEntityManager
+            .createQueryBuilder()
+            .insert()
+            .into(categories_entity_1.LprdTrafficLinksCategory)
+            .values(values)
+            .execute();
+        let trafficLinksCategory = [];
+        for (let i = 0; i < values.length; i++) {
+            trafficLinksCategory.push({ traffic_link_id: values[i].lprd_traffic_link_id, category_id: values[i].id });
+        }
     }
-    async findAll() {
-        return this.lprdTrafficLinksCategoryRepository.find();
+    async deleteLprdTrafficLinkCategory(removedElements, lprdTrafficLinkId, transactionalEntityManager) {
+        await transactionalEntityManager
+            .createQueryBuilder()
+            .delete()
+            .from(categories_entity_1.LprdTrafficLinksCategory)
+            .where('lprd_traffic_link_id = :lprdTrafficLinkId', { lprdTrafficLinkId })
+            .andWhere('lprd_traffic_categories_id IN (:...removedElements)', { removedElements })
+            .execute();
+        let trafficLinksCategories = [];
+        for (let i = 0; i < removedElements.length; i++) {
+            trafficLinksCategories.push({ traffic_link_id: lprdTrafficLinkId, category_id: removedElements[i] });
+        }
     }
-    async findOne(id) {
-        return this.lprdTrafficLinksCategoryRepository.findOne({ where: { id } });
+    async deleteLprdTrafficLinkCategoryByTrafficLinkId(lprdTrafficLinkId, transactionalEntityManager) {
+        await transactionalEntityManager
+            .createQueryBuilder()
+            .delete()
+            .from(categories_entity_1.LprdTrafficLinksCategory)
+            .where('lprd_traffic_link_id = :lprdTrafficLinkId', { lprdTrafficLinkId })
+            .execute();
     }
-    async update(id, data) {
-        await this.lprdTrafficLinksCategoryRepository.update(id, data);
-        return this.findOne(id);
-    }
-    async remove(id) {
-        await this.lprdTrafficLinksCategoryRepository.delete(id);
+    async getAllCategories() {
+        return this.lprdTrafficLinkCategoryRepository.find();
     }
 };
-exports.LprdTrafficLinksCategoryService = LprdTrafficLinksCategoryService;
-exports.LprdTrafficLinksCategoryService = LprdTrafficLinksCategoryService = __decorate([
-    (0, common_1.Injectable)(),
+exports.LprdTrafficLinkCategoriesService = LprdTrafficLinkCategoriesService;
+exports.LprdTrafficLinkCategoriesService = LprdTrafficLinkCategoriesService = __decorate([
     __param(0, (0, typeorm_1.InjectRepository)(categories_entity_1.LprdTrafficLinksCategory)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
-], LprdTrafficLinksCategoryService);
+], LprdTrafficLinkCategoriesService);
 //# sourceMappingURL=categories.service.js.map

@@ -10,4 +10,5 @@ export declare class LprdTrafficSourceService {
     findOne(id: number): Promise<LprdTrafficSource>;
     update(id: number, data: UpdateLprdTrafficSourceDto): Promise<LprdTrafficSource>;
     remove(id: number): Promise<void>;
+    getTrafficSourceById(id: number): Promise<LprdTrafficSource>;
 }

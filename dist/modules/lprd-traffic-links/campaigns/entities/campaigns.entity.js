@@ -20,6 +20,14 @@ __decorate([
     __metadata("design:type", Number)
 ], LprdTrafficLinksCampaign.prototype, "id", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], LprdTrafficLinksCampaign.prototype, "campaign_id", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ type: 'int' }),
+    __metadata("design:type", Number)
+], LprdTrafficLinksCampaign.prototype, "lprd_traffic_link_id", void 0);
+__decorate([
     (0, typeorm_1.ManyToOne)(() => lprd_traffic_links_entity_1.LprdTrafficLinks),
     (0, typeorm_1.JoinColumn)({ name: 'lprd_traffic_link_id' }),
     __metadata("design:type", lprd_traffic_links_entity_1.LprdTrafficLinks)

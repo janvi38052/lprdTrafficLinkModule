@@ -1,35 +1,66 @@
-import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { EntityManager, Repository } from 'typeorm';
 import { LprdTrafficLinksCategory } from './entities/categories.entity';
-import { CreateLprdTrafficLinksCategoryDto } from './dtos/create-category.dto';
-import { UpdateLprdTrafficLinksCategoryDto } from './dtos/update-category.dto';
 
-@Injectable()
-export class LprdTrafficLinksCategoryService { 
+export class LprdTrafficLinkCategoriesService {
   constructor(
     @InjectRepository(LprdTrafficLinksCategory)
-    private readonly lprdTrafficLinksCategoryRepository: Repository<LprdTrafficLinksCategory>,
+    private readonly lprdTrafficLinkCategoryRepository: Repository<LprdTrafficLinksCategory>,
   ) {}
 
-  async create(data: CreateLprdTrafficLinksCategoryDto): Promise<LprdTrafficLinksCategory> {
-    const category = this.lprdTrafficLinksCategoryRepository.create(data);
-    return this.lprdTrafficLinksCategoryRepository.save(category);
+  // Create Traffic Link Categories
+  async createLprdTrafficLinkCategory(
+    values: Partial<LprdTrafficLinksCategory>[],
+    transactionalEntityManager: EntityManager,
+  ) {
+    const trafficLinkCategory = await transactionalEntityManager
+      .createQueryBuilder()
+      .insert()
+      .into(LprdTrafficLinksCategory)
+      .values(values)
+      .execute();
+
+    let trafficLinksCategory = [];
+    for (let i = 0; i < values.length; i++) {
+      trafficLinksCategory.push({ traffic_link_id : values[i].lprd_traffic_link_id, category_id: values[i].id });
+    }
   }
 
-  async findAll(): Promise<LprdTrafficLinksCategory[]> {
-    return this.lprdTrafficLinksCategoryRepository.find();
-  }
-  async findOne(id: number): Promise<LprdTrafficLinksCategory> {
-    return this.lprdTrafficLinksCategoryRepository.findOne({ where: { id } });
+  // Delete Traffic Link Categories
+  async deleteLprdTrafficLinkCategory(
+    removedElements: number[],
+    lprdTrafficLinkId: number,
+    transactionalEntityManager: EntityManager,
+  ) {
+    await transactionalEntityManager
+      .createQueryBuilder()
+      .delete()
+      .from(LprdTrafficLinksCategory)
+      .where('lprd_traffic_link_id = :lprdTrafficLinkId', { lprdTrafficLinkId })
+      .andWhere('lprd_traffic_categories_id IN (:...removedElements)', { removedElements })
+      .execute();
+
+    let trafficLinksCategories = [];
+    for (let i = 0; i < removedElements.length; i++) {
+      trafficLinksCategories.push({ traffic_link_id: lprdTrafficLinkId, category_id: removedElements[i] });
+    }
   }
 
-  async update(id: number, data: UpdateLprdTrafficLinksCategoryDto): Promise<LprdTrafficLinksCategory> {
-    await this.lprdTrafficLinksCategoryRepository.update(id, data);
-    return this.findOne(id);
+  // Delete Traffic Link Categories by Traffic Link ID
+  async deleteLprdTrafficLinkCategoryByTrafficLinkId(
+    lprdTrafficLinkId: number,
+    transactionalEntityManager: EntityManager,
+  ) {
+    await transactionalEntityManager
+      .createQueryBuilder()
+      .delete()
+      .from(LprdTrafficLinksCategory)
+      .where('lprd_traffic_link_id = :lprdTrafficLinkId', { lprdTrafficLinkId })
+      .execute();
   }
 
-  async remove(id: number): Promise<void> {
-    await this.lprdTrafficLinksCategoryRepository.delete(id);
+  // Fetch all Traffic Link Categories
+  async getAllCategories(): Promise<LprdTrafficLinksCategory[]> {
+    return this.lprdTrafficLinkCategoryRepository.find();
   }
 }

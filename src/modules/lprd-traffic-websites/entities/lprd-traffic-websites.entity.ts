@@ -9,6 +9,12 @@ export class LprdTrafficWebsite {
   @Column()
   name:string;
 
+  @Column()
+  default_url: string;
+
+  @Column()
+  track_url: string;
+
   @OneToMany(() => LprdTrafficLinks, (trafficLink) => trafficLink.trafficWebsite)
   trafficLinks: LprdTrafficLinks[];
 }

@@ -7,25 +7,21 @@ import { UpdateMaxDeliveryClientDto } from './dtos/update.max-delivery-client.dt
 export class MaxDeliveryClientController {
   constructor(private readonly maxDeliveryClientService: MaxDeliveryClientService) {}
 
-  // Create a new MaxDeliveryClient
   @Post()
   async create(@Body() createDto: CreateMaxDeliveryClientDto) {
     return this.maxDeliveryClientService.create(createDto);
   }
 
-  // Get all MaxDeliveryClients
   @Get()
   async findAll() {
     return this.maxDeliveryClientService.findAll();
   }
 
-  // Get a single MaxDeliveryClient by ID
   @Get(':id')
   async findOne(@Param('id') id: number) {
     return this.maxDeliveryClientService.findOne(id);
   }
 
-  // Update MaxDeliveryClient by ID
   @Put(':id')
   async update(
     @Param('id') id: number,
@@ -34,7 +30,6 @@ export class MaxDeliveryClientController {
     return this.maxDeliveryClientService.update(id, updateDto);
   }
 
-  // Delete MaxDeliveryClient by ID
   @Delete(':id')
   async remove(@Param('id') id: number) {
     return this.maxDeliveryClientService.remove(id);

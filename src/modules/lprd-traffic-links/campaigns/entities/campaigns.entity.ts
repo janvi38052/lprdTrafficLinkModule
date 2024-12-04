@@ -8,11 +8,16 @@ export class LprdTrafficLinksCampaign{
   @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
   id: number;
 
+  @Column({ type: 'int' })
+  campaign_id: number;
+
+  @Column({ type: 'int' })
+  lprd_traffic_link_id: number;
 
   @ManyToOne(() => LprdTrafficLinks)
   @JoinColumn({ name: 'lprd_traffic_link_id' })
   lprdTrafficLink: LprdTrafficLinks;
 
   @Column({ type: 'varchar', length: 50, nullable: true })
-  status: string;  // E.g., 'active', 'inactive', etc.
+  status: string; 
 }

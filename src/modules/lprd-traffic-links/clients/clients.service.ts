@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, EntityManager } from 'typeorm';
 import { LprdTrafficLinksClient } from './entities/clients.entity';
-import { CreateLprdTrafficLinksClientDto } from './dtos/create-clients.dto';
-import { UpdateLprdTrafficLinksClientDto } from './dtos/update-clients.dto';
+
 
 @Injectable()
 export class LprdTrafficLinksClientService {
@@ -12,25 +11,59 @@ export class LprdTrafficLinksClientService {
     private readonly clientRepository: Repository<LprdTrafficLinksClient>,
   ) {}
 
-  async create(data: CreateLprdTrafficLinksClientDto): Promise<LprdTrafficLinksClient> {
-    const client = this.clientRepository.create(data);
-    return this.clientRepository.save(client);
+  // Method to handle the creation of traffic link clients
+  async createLprdTrafficLinkClient(
+    values: Partial<LprdTrafficLinksClient>[],
+    transactionalEntityManager: EntityManager,
+  ) {
+    // Insert the values into the database
+    await transactionalEntityManager
+      .createQueryBuilder()
+      .insert()
+      .into(LprdTrafficLinksClient)
+      .values(values)
+      .execute();
+
+    // Prepare the traffic link clients for synchronization
+    const trafficLinkClients = values.map((value) => ({
+      traffic_link_id: value.lprd_traffic_link_id, // Ensure this is correct in your entity
+      client_id: value.client_id, // Ensure this is correct in your entity
+    }));
+
+    // Sync the traffic link clients with the external service (if needed)
+   
+  }
+  async deleteLprdTrafficLinkClientByTrafficLinkId(
+    lprdTrafficLinkId: number,
+    transactionalEntityManager: EntityManager,
+  ) {
+    await transactionalEntityManager
+      .createQueryBuilder()
+      .delete()
+      .from(LprdTrafficLinksClient)
+      .where('lprd_traffic_link_id = :lprdTrafficLinkId', { lprdTrafficLinkId })
+      .execute();
+      
   }
 
-  async findAll(): Promise<LprdTrafficLinksClient[]> {
-    return this.clientRepository.find();
-  }
+  async deleteLprdTrafficLinkClient(
+    removedElements: number[],
+    lprdTrafficLinkId: number,
+    transactionalEntityManager: EntityManager,
+  ) {
+    await transactionalEntityManager
+      .createQueryBuilder()
+      .delete()
+      .from(LprdTrafficLinksClient)
+      .where('lprd_traffic_link_id = :lprdTrafficLinkId', { lprdTrafficLinkId })
+      .andWhere('client_id IN (:...removedElements)', { removedElements })
+      .execute();
 
-  async findOne(id: number): Promise<LprdTrafficLinksClient> {
-    return this.clientRepository.findOne({ where: { id } });
-  }
+      let trafficLinkClients = [];
+      for (let i = 0; i < removedElements.length; i++) {
+        trafficLinkClients.push({ traffic_link_id: lprdTrafficLinkId, client_id: removedElements[i]});
+      }
 
-  async update(id: number, data: UpdateLprdTrafficLinksClientDto): Promise<LprdTrafficLinksClient> {
-    await this.clientRepository.update(id, data);
-    return this.findOne(id);
+ 
+    }
   }
-
-  async remove(id: number): Promise<void> {
-    await this.clientRepository.delete(id);
-  }
-}

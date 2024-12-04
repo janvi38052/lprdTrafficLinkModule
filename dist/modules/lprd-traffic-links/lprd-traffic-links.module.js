@@ -10,7 +10,9 @@ exports.LprdTrafficLinksModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const lprd_traffic_links_controller_1 = require("./lprd-traffic-links.controller");
-const lprd_traffic_links_service_1 = require("./lprd-traffic-links.service");
+const lprdTrafficLinks_service_1 = require("./lprdTrafficLinks.service");
+const createLprdTrafficLinks_service_1 = require("./createLprdTrafficLinks.service");
+const updateLprdTrafficLinks_service_1 = require("./updateLprdTrafficLinks.service");
 const lprd_traffic_links_entity_1 = require("./entities/lprd-traffic-links.entity");
 const categories_entity_1 = require("./categories/entities/categories.entity");
 const categories_service_1 = require("./categories/categories.service");
@@ -62,8 +64,10 @@ exports.LprdTrafficLinksModule = LprdTrafficLinksModule = __decorate([
         ],
         controllers: [lprd_traffic_links_controller_1.LprdTrafficLinksController],
         providers: [
-            lprd_traffic_links_service_1.LprdTrafficLinksService,
-            categories_service_1.LprdTrafficLinksCategoryService,
+            lprdTrafficLinks_service_1.LprdTrafficLinksService,
+            createLprdTrafficLinks_service_1.CreateLprdTrafficLinkService,
+            updateLprdTrafficLinks_service_1.UpdateLprdTrafficLinkService,
+            categories_service_1.LprdTrafficLinkCategoriesService,
             clients_service_1.LprdTrafficLinksClientService,
             campaigns_service_1.LprdTrafficLinksCampaignService,
             max_delivery_client_service_1.MaxDeliveryClientService,

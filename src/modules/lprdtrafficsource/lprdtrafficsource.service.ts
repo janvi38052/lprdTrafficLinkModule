@@ -12,30 +12,30 @@ export class LprdTrafficSourceService {
     private readonly lprdTrafficSourceRepository: Repository<LprdTrafficSource>,
   ) {}
 
-  // Create a new LprdTrafficSource
   async create(data: CreateLprdTrafficSourceDto): Promise<LprdTrafficSource> {
     const source = this.lprdTrafficSourceRepository.create(data);
     return this.lprdTrafficSourceRepository.save(source);
   }
 
-  // Get all LprdTrafficSources
   async findAll(): Promise<LprdTrafficSource[]> {
     return this.lprdTrafficSourceRepository.find();
   }
 
-  // Get a single LprdTrafficSource by ID
   async findOne(id: number): Promise<LprdTrafficSource> {
     return this.lprdTrafficSourceRepository.findOne({ where: { id } });
   }
 
-  // Update an LprdTrafficSource by ID
   async update(id: number, data: UpdateLprdTrafficSourceDto): Promise<LprdTrafficSource> {
     await this.lprdTrafficSourceRepository.update(id, data);
     return this.findOne(id);
   }
 
-  // Delete an LprdTrafficSource by ID
   async remove(id: number): Promise<void> {
     await this.lprdTrafficSourceRepository.delete(id);
+  }
+
+  // Add the missing method here if you prefer
+  async getTrafficSourceById(id: number): Promise<LprdTrafficSource> {
+    return this.findOne(id);  // Simply call the existing findOne method
   }
 }

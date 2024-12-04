@@ -14,46 +14,53 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LprdTrafficLinksController = void 0;
 const common_1 = require("@nestjs/common");
-const lprd_traffic_links_service_1 = require("./lprd-traffic-links.service");
+const lprdTrafficLinks_service_1 = require("./lprdTrafficLinks.service");
 const create_lprd_traffic_links_dto_1 = require("./dtos/create-lprd-traffic-links.dto");
 const update_lprd_traffic_links_dto_1 = require("./dtos/update-lprd-traffic-links.dto");
+const createLprdTrafficLinks_service_1 = require("./createLprdTrafficLinks.service");
+const updateLprdTrafficLinks_service_1 = require("./updateLprdTrafficLinks.service");
 let LprdTrafficLinksController = class LprdTrafficLinksController {
-    constructor(lprdTrafficLinksService) {
+    constructor(lprdTrafficLinksService, createLprdTrafficLinkService, updateLprdTrafficLinkService) {
         this.lprdTrafficLinksService = lprdTrafficLinksService;
+        this.createLprdTrafficLinkService = createLprdTrafficLinkService;
+        this.updateLprdTrafficLinkService = updateLprdTrafficLinkService;
     }
-    async create(createLprdTrafficLinksDto) {
-        return this.lprdTrafficLinksService.create(createLprdTrafficLinksDto);
+    async create(createLprdTrafficLinkDto, req) {
+        return await this.createLprdTrafficLinkService.createTrafficLink(createLprdTrafficLinkDto, req);
     }
-    async findAll(page = 1, limit = 10, searchQuery = '', sortBy = 'tag', order = 'ASC') {
-        return this.lprdTrafficLinksService.findAll(page, limit, searchQuery, sortBy, order);
+    async update(id, updateLprdTrafficLinkDto, req) {
+        return await this.updateLprdTrafficLinkService.updateTrafficLink(id, updateLprdTrafficLinkDto, req);
+    }
+    async findAll(query) {
+        return await this.lprdTrafficLinksService.findAll(query);
     }
     async findOne(id) {
-        return this.lprdTrafficLinksService.findOne(id);
-    }
-    async update(id, updateLprdTrafficLinksDto) {
-        return this.lprdTrafficLinksService.update(id, updateLprdTrafficLinksDto);
-    }
-    async remove(id) {
-        return this.lprdTrafficLinksService.remove(id);
+        return await this.lprdTrafficLinksService.getTrafficLinkById(id);
     }
 };
 exports.LprdTrafficLinksController = LprdTrafficLinksController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_lprd_traffic_links_dto_1.CreateLprdTrafficLinksDto]),
+    __metadata("design:paramtypes", [create_lprd_traffic_links_dto_1.default, Object]),
     __metadata("design:returntype", Promise)
 ], LprdTrafficLinksController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)('page')),
-    __param(1, (0, common_1.Query)('limit')),
-    __param(2, (0, common_1.Query)('search')),
-    __param(3, (0, common_1.Query)('sortBy')),
-    __param(4, (0, common_1.Query)('order')),
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number, String, String, String]),
+    __metadata("design:paramtypes", [Number, update_lprd_traffic_links_dto_1.default, Object]),
+    __metadata("design:returntype", Promise)
+], LprdTrafficLinksController.prototype, "update", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], LprdTrafficLinksController.prototype, "findAll", null);
 __decorate([
@@ -63,23 +70,10 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], LprdTrafficLinksController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, update_lprd_traffic_links_dto_1.UpdateLprdTrafficLinksDto]),
-    __metadata("design:returntype", Promise)
-], LprdTrafficLinksController.prototype, "update", null);
-__decorate([
-    (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Promise)
-], LprdTrafficLinksController.prototype, "remove", null);
 exports.LprdTrafficLinksController = LprdTrafficLinksController = __decorate([
     (0, common_1.Controller)('lprd-traffic-links'),
-    __metadata("design:paramtypes", [lprd_traffic_links_service_1.LprdTrafficLinksService])
+    __metadata("design:paramtypes", [lprdTrafficLinks_service_1.LprdTrafficLinksService,
+        createLprdTrafficLinks_service_1.CreateLprdTrafficLinkService,
+        updateLprdTrafficLinks_service_1.UpdateLprdTrafficLinkService])
 ], LprdTrafficLinksController);
 //# sourceMappingURL=lprd-traffic-links.controller.js.map

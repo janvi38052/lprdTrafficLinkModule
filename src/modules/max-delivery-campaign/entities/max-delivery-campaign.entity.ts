@@ -6,7 +6,7 @@ export class MaxDeliveryCampaign {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @Column({ type: 'int', unsigned: true })
+  @Column({ type: 'int' })
   campaign_id: number;
 
   @Column({ type: 'int', nullable: true, default: 0 })

@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { LprdTrafficLinksCategoryService } from './categories.service';
-import { CategoriesController } from './categories.controller';
+import { LprdTrafficLinkCategoriesService } from './categories.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LprdTrafficLinksCategory } from './entities/categories.entity';
 import { LprdTrafficLinks } from '../entities/lprd-traffic-links.entity';
+import { LprdTrafficLinkCategoriesController } from './categoris.controller';
 
 @Module({
   imports:[TypeOrmModule.forFeature([LprdTrafficLinksCategory,LprdTrafficLinks])],
-  providers: [LprdTrafficLinksCategoryService],
-  controllers: [CategoriesController],
-  exports:[LprdTrafficLinksCategoryService]
+  providers: [LprdTrafficLinkCategoriesService],
+  controllers: [LprdTrafficLinkCategoriesController],
+  exports:[LprdTrafficLinkCategoriesService]
 })
 export class LprdTrafficLinkCategoriesModule {}

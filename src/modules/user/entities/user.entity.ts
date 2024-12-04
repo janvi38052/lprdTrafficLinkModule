@@ -16,7 +16,7 @@ import { LprdTrafficLinks } from 'src/modules/lprd-traffic-links/entities/lprd-t
     @Index('EMAIL_ADDRESS')
     email_address: string;
   
-    @Column({ type: 'varchar', length: 100, nullable: true })
+    @Column({ type: 'varchar' })
     ref_user_id: string;
   
     @Column({ type: 'varchar', length: 255, nullable: true, unique: true })
@@ -29,7 +29,7 @@ import { LprdTrafficLinks } from 'src/modules/lprd-traffic-links/entities/lprd-t
     @Column({ type: 'smallint', default: 0 })
     is_mfa_verified: number;
   
-    @Column({ type: 'int', nullable: true })
+    @Column({ type: 'int' })
     client_id: number;
   
     @OneToMany(
