@@ -10,20 +10,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateMaxDeliveryCampaignDto = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 class CreateMaxDeliveryCampaignDto {
 }
 exports.CreateMaxDeliveryCampaignDto = CreateMaxDeliveryCampaignDto;
 __decorate([
+    (0, swagger_1.ApiPropertyOptional)({ description: 'campagin_id' }),
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", Number)
 ], CreateMaxDeliveryCampaignDto.prototype, "campaign_id", void 0);
 __decorate([
+    (0, swagger_1.ApiPropertyOptional)({ description: 'max_delivery_percentage' }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsInt)(),
     __metadata("design:type", Number)
 ], CreateMaxDeliveryCampaignDto.prototype, "max_delivery_percentage", void 0);
 __decorate([
+    (0, swagger_1.ApiPropertyOptional)({ description: 'status' }),
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsBoolean)(),
     __metadata("design:type", Boolean)

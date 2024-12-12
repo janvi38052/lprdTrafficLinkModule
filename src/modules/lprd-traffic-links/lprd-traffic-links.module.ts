@@ -52,17 +52,17 @@ import { UserService } from 'src/modules/user/user.service';
   ],
   controllers: [LprdTrafficLinksController],
   providers: [
-    LprdTrafficLinksService,  // Main service
-    CreateLprdTrafficLinkService,  // Service to create links
-    UpdateLprdTrafficLinkService,  // Service to update links
-    LprdTrafficLinkCategoriesService,  // Category service
-    LprdTrafficLinksClientService,  // Client service
-    LprdTrafficLinksCampaignService,  // Campaign service
-    MaxDeliveryClientService,  // Max delivery client service
-    MaxDeliveryCampaignService,  // Max delivery campaign service
-    LprdTrafficSourceService,  // Traffic source service
-    LprdTrafficWebsiteService,  // Traffic website service
-    UserService,  // User service
+    LprdTrafficLinksService, 
+    CreateLprdTrafficLinkService, 
+    UpdateLprdTrafficLinkService,  
+    LprdTrafficLinkCategoriesService, 
+    LprdTrafficLinksClientService,  
+    LprdTrafficLinksCampaignService,  
+    MaxDeliveryClientService,  
+    MaxDeliveryCampaignService,  
+    LprdTrafficSourceService, 
+    LprdTrafficWebsiteService,  
+    UserService, 
   ],
 })
 export class LprdTrafficLinksModule {}

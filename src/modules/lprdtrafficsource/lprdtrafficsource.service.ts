@@ -34,8 +34,7 @@ export class LprdTrafficSourceService {
     await this.lprdTrafficSourceRepository.delete(id);
   }
 
-  // Add the missing method here if you prefer
   async getTrafficSourceById(id: number): Promise<LprdTrafficSource> {
-    return this.findOne(id);  // Simply call the existing findOne method
+    return this.findOne(id); 
   }
 }

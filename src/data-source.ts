@@ -16,7 +16,7 @@ export const AppDataSource = new DataSource({
     port: 3306,
     username: 'root',
     password: 'root',
-    database: 'collegedb',
+    database: 'npm',
     entities: [LprdTrafficLinks,LprdTrafficLinksCategory,LprdTrafficLinksClient,LprdTrafficLinksCampaign,MaxDeliveryClient,MaxDeliveryCampaign,LprdTrafficSource,LprdTrafficWebsite,User],
     migrations: ['src/migrations/*.ts'],
     synchronize: false, 

@@ -101,7 +101,10 @@ let LprdTrafficLinksService = class LprdTrafficLinksService {
         if (!trafficLink) {
             throw new common_1.NotFoundException('Traffic link not found');
         }
-        return trafficLink;
+        return {
+            ...trafficLink,
+            track_url: trafficLink.trafficWebsite?.track_url,
+        };
     }
 };
 exports.LprdTrafficLinksService = LprdTrafficLinksService;

@@ -75,9 +75,7 @@ let CreateLprdTrafficLinkService = class CreateLprdTrafficLinkService {
                         await this.createLprdTrafficLinkCampaign(campaigns, savedLprdTrafficLink, req, transactionalEntityManager);
                     }
                 }
-                const url = `https://example.com/traffic-links/${savedLprdTrafficLink.id}`;
-                savedLprdTrafficLink.url = url;
-                return (0, helpers_util_1.responseCreated)({ ...savedLprdTrafficLink, url }, (0, success_messages_1.getSuccessMessage)('TRAFFIC_LINK_CREATED'));
+                return (0, helpers_util_1.responseCreated)({ ...savedLprdTrafficLink }, (0, success_messages_1.getSuccessMessage)('TRAFFIC_LINK_CREATED'));
             });
         }
         catch (error) {

@@ -1,6 +1,4 @@
 export declare class CreateLprdTrafficLinksClientDto {
-    name: string;
-    email: string;
-    description?: string;
-    lprdTrafficLinkId: number;
+    client_id: number;
+    lprd_traffic_link_id: number;
 }

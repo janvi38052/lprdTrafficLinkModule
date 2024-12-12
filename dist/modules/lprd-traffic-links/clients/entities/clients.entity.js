@@ -28,18 +28,6 @@ __decorate([
     __metadata("design:type", Number)
 ], LprdTrafficLinksClient.prototype, "lprd_traffic_link_id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
-    __metadata("design:type", String)
-], LprdTrafficLinksClient.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
-    __metadata("design:type", String)
-], LprdTrafficLinksClient.prototype, "email", void 0);
-__decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 255, nullable: true }),
-    __metadata("design:type", String)
-], LprdTrafficLinksClient.prototype, "description", void 0);
-__decorate([
     (0, typeorm_1.ManyToOne)(() => lprd_traffic_links_entity_1.LprdTrafficLinks, lprdTrafficLink => lprdTrafficLink.clients),
     (0, typeorm_1.JoinColumn)({ name: 'lprd_traffic_link_id' }),
     __metadata("design:type", lprd_traffic_links_entity_1.LprdTrafficLinks)

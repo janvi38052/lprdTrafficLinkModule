@@ -112,13 +112,11 @@ export class CreateLprdTrafficLinkService {
               );
             }
           }
-
-          // Generate URL for the saved traffic link
-          const url = `https://example.com/traffic-links/${savedLprdTrafficLink.id}`;
-          savedLprdTrafficLink.url = url;
+ 
+      
 
           return responseCreated(
-            { ...savedLprdTrafficLink, url },
+            { ...savedLprdTrafficLink},
             getSuccessMessage('TRAFFIC_LINK_CREATED'),
           );
         },

@@ -17,7 +17,7 @@ exports.AppDataSource = new typeorm_1.DataSource({
     port: 3306,
     username: 'root',
     password: 'root',
-    database: 'collegedb',
+    database: 'npm',
     entities: [lprd_traffic_links_entity_1.LprdTrafficLinks, categories_entity_1.LprdTrafficLinksCategory, clients_entity_1.LprdTrafficLinksClient, campaigns_entity_1.LprdTrafficLinksCampaign, max_delivery_client_entity_1.MaxDeliveryClient, max_delivery_campaign_entity_1.MaxDeliveryCampaign, lprdtrafficsource_entity_1.LprdTrafficSource, lprd_traffic_websites_entity_1.LprdTrafficWebsite, user_entity_1.User],
     migrations: ['src/migrations/*.ts'],
     synchronize: false,

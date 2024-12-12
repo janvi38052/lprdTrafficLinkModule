@@ -1,5 +1,6 @@
 declare class CreateLprdTrafficLinksDto {
     traffic_source_id: number;
+    updated_by: string;
     traffic_website_id: number;
     max_provider_delivery: number;
     locale: string;

@@ -83,12 +83,8 @@ export class LprdTrafficLinksService {
         'trafficWebsite',
         'trafficSource',
         'categories',  
-        //'categories.lprdTrafficCategory',  
         'clients',
-       // 'clients.client',
         'campaigns',
-        //'campaigns.campaign',
-       // 'campaigns.campaign.clients',
       ],
       loadEagerRelations: true,
     });
@@ -97,6 +93,11 @@ export class LprdTrafficLinksService {
       throw new NotFoundException('Traffic link not found');
     }
 
-    return trafficLink;
+
+    return {
+      ...trafficLink,
+      track_url:trafficLink.trafficWebsite?.track_url,
+
+    };
   }
 }

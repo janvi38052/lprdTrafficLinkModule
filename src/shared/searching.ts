@@ -1,5 +1,6 @@
 export const search = (query: string, fields: string[]) => {
-    const searchQuery = fields.map(field => `${field} LIKE '%${query}%'`).join(' OR ');
-    return searchQuery;
-  };
-  
+  const searchQuery = fields
+    .map((field) => `${field} LIKE '%${query}%'`)
+    .join(' OR ');
+  return searchQuery;
+};

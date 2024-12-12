@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.LprdTrafficWebsiteController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const lprd_traffic_websites_service_1 = require("./lprd-traffic-websites.service");
 const create_lprd_traffic_websites_dto_1 = require("./dtos/create-lprd-traffic-websites.dto");
 const update_lprd_traffic_websites_dto_1 = require("./dtos/update-lprd-traffic-websites.dto");
@@ -40,6 +41,7 @@ let LprdTrafficWebsiteController = class LprdTrafficWebsiteController {
 exports.LprdTrafficWebsiteController = LprdTrafficWebsiteController;
 __decorate([
     (0, common_1.Post)(),
+    (0, swagger_1.ApiBody)({ type: create_lprd_traffic_websites_dto_1.CreateLprdTrafficWebsiteDto }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_lprd_traffic_websites_dto_1.CreateLprdTrafficWebsiteDto]),
@@ -53,6 +55,12 @@ __decorate([
 ], LprdTrafficWebsiteController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, swagger_1.ApiParam)({
+        name: 'id',
+        description: 'The ID of the LPRD traffic website to retrieve',
+        type: Number,
+        example: 1,
+    }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -60,6 +68,13 @@ __decorate([
 ], LprdTrafficWebsiteController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Put)(':id'),
+    (0, swagger_1.ApiParam)({
+        name: 'id',
+        description: 'The ID of the LPRD traffic website to update',
+        type: Number,
+        example: 1,
+    }),
+    (0, swagger_1.ApiBody)({ type: update_lprd_traffic_websites_dto_1.UpdateLprdTrafficWebsiteDto }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -68,12 +83,19 @@ __decorate([
 ], LprdTrafficWebsiteController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, swagger_1.ApiParam)({
+        name: 'id',
+        description: 'The ID of the LPRD traffic website to delete',
+        type: Number,
+        example: 1,
+    }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], LprdTrafficWebsiteController.prototype, "remove", null);
 exports.LprdTrafficWebsiteController = LprdTrafficWebsiteController = __decorate([
+    (0, swagger_1.ApiTags)('LprdTrafficWebsites'),
     (0, common_1.Controller)('lprd-traffic-websites'),
     __metadata("design:paramtypes", [lprd_traffic_websites_service_1.LprdTrafficWebsiteService])
 ], LprdTrafficWebsiteController);

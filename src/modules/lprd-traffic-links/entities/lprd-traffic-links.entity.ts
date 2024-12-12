@@ -29,9 +29,7 @@ export class LprdTrafficLinks {
   @PrimaryGeneratedColumn('increment')
   id: number;
  
-
- 
-  url?: string;
+  track_url:string;
 
  
   @Column({ type: 'tinyint', width: 3, default: 0 })

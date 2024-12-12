@@ -11,20 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateLprdTrafficLinksClientDto = void 0;
 const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
 class CreateLprdTrafficLinksClientDto {
 }
 exports.CreateLprdTrafficLinksClientDto = CreateLprdTrafficLinksClientDto;
 __decorate([
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateLprdTrafficLinksClientDto.prototype, "name", void 0);
+    (0, swagger_1.ApiProperty)({ description: 'Client ID', example: 1 }),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateLprdTrafficLinksClientDto.prototype, "client_id", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateLprdTrafficLinksClientDto.prototype, "email", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], CreateLprdTrafficLinksClientDto.prototype, "description", void 0);
+    (0, swagger_1.ApiProperty)({ description: 'Traffic Link ID', example: 101 }),
+    (0, class_validator_1.IsInt)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", Number)
+], CreateLprdTrafficLinksClientDto.prototype, "lprd_traffic_link_id", void 0);
 //# sourceMappingURL=create-clients.dto.js.map

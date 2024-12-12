@@ -11,10 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateLprdTrafficWebsiteDto = void 0;
 const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
 class CreateLprdTrafficWebsiteDto {
 }
 exports.CreateLprdTrafficWebsiteDto = CreateLprdTrafficWebsiteDto;
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        description: 'The name of the LPRD traffic website',
+        example: 'Traffic Monitoring Website',
+    }),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], CreateLprdTrafficWebsiteDto.prototype, "name", void 0);

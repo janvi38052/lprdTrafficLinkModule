@@ -26,6 +26,8 @@ const lprd_traffic_websites_module_1 = require("./modules/lprd-traffic-websites/
 const lprd_traffic_websites_entity_1 = require("./modules/lprd-traffic-websites/entities/lprd-traffic-websites.entity");
 const user_module_1 = require("./modules/user/user.module");
 const user_entity_1 = require("./modules/user/entities/user.entity");
+const auth_module_1 = require("./auth/auth.module");
+const users_module_1 = require("./users/users.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -38,7 +40,7 @@ exports.AppModule = AppModule = __decorate([
                 port: 3306,
                 username: 'root',
                 password: 'root',
-                database: 'collegedb',
+                database: 'npm',
                 entities: [lprd_traffic_links_entity_1.LprdTrafficLinks, categories_entity_1.LprdTrafficLinksCategory, clients_entity_1.LprdTrafficLinksClient, campaigns_entity_1.LprdTrafficLinksCampaign, max_delivery_client_entity_1.MaxDeliveryClient, max_delivery_campaign_entity_1.MaxDeliveryCampaign, lprdtrafficsource_entity_1.LprdTrafficSource, lprd_traffic_websites_entity_1.LprdTrafficWebsite, user_entity_1.User],
                 synchronize: true,
                 logging: true,
@@ -51,7 +53,9 @@ exports.AppModule = AppModule = __decorate([
             max_delivery_campaign_module_1.MaxDeliveryCampaignModule,
             lprdtrafficsource_module_1.LprdtrafficsourceModule,
             lprd_traffic_websites_module_1.LprdTrafficWebsitesModule,
-            user_module_1.UserModule
+            user_module_1.UserModule,
+            auth_module_1.AuthModule,
+            users_module_1.UsersModule
         ],
         controllers: [],
         providers: [],

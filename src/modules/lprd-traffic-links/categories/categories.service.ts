@@ -8,7 +8,6 @@ export class LprdTrafficLinkCategoriesService {
     private readonly lprdTrafficLinkCategoryRepository: Repository<LprdTrafficLinksCategory>,
   ) {}
 
-  // Create Traffic Link Categories
   async createLprdTrafficLinkCategory(
     values: Partial<LprdTrafficLinksCategory>[],
     transactionalEntityManager: EntityManager,
@@ -26,7 +25,6 @@ export class LprdTrafficLinkCategoriesService {
     }
   }
 
-  // Delete Traffic Link Categories
   async deleteLprdTrafficLinkCategory(
     removedElements: number[],
     lprdTrafficLinkId: number,
@@ -46,7 +44,6 @@ export class LprdTrafficLinkCategoriesService {
     }
   }
 
-  // Delete Traffic Link Categories by Traffic Link ID
   async deleteLprdTrafficLinkCategoryByTrafficLinkId(
     lprdTrafficLinkId: number,
     transactionalEntityManager: EntityManager,
@@ -59,7 +56,6 @@ export class LprdTrafficLinkCategoriesService {
       .execute();
   }
 
-  // Fetch all Traffic Link Categories
   async getAllCategories(): Promise<LprdTrafficLinksCategory[]> {
     return this.lprdTrafficLinkCategoryRepository.find();
   }

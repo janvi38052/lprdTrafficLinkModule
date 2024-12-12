@@ -15,7 +15,7 @@ export declare enum ConfidenceScore {
 }
 export declare class LprdTrafficLinks {
     id: number;
-    url?: string;
+    track_url: string;
     approved: number;
     traffic_source_id: number;
     traffic_website_id: number;

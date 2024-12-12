@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const max_delivery_campaign_service_1 = require("./max-delivery-campaign.service");
 const create_max_delivery_campaign_dto_1 = require("./dtos/create.max-delivery-campaign.dto");
 const update_max_delivery_campaign_dto_1 = require("./dtos/update.max-delivery-campaign.dto");
+const swagger_1 = require("@nestjs/swagger");
 let MaxDeliveryCampaignController = class MaxDeliveryCampaignController {
     constructor(campaignService) {
         this.campaignService = campaignService;
@@ -40,6 +41,9 @@ let MaxDeliveryCampaignController = class MaxDeliveryCampaignController {
 exports.MaxDeliveryCampaignController = MaxDeliveryCampaignController;
 __decorate([
     (0, common_1.Post)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Created max-delivery-campaign' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'created max-delivery-campaign successfully' }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Invalid Input' }),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_max_delivery_campaign_dto_1.CreateMaxDeliveryCampaignDto]),
@@ -47,12 +51,18 @@ __decorate([
 ], MaxDeliveryCampaignController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, swagger_1.ApiOperation)({ summary: 'Get All max-delivery-campaign' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Fetch all max-delivery-campaign successfully' }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Invalid Input' }),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], MaxDeliveryCampaignController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Get ID of max-delivery-campaign' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Get ID max-delivery-campaign successfully' }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Invalid Input' }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -60,6 +70,9 @@ __decorate([
 ], MaxDeliveryCampaignController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Update max-delivery-campaign' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Updated max-delivery-campaign successfully' }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Invalid Input' }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -68,12 +81,16 @@ __decorate([
 ], MaxDeliveryCampaignController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, swagger_1.ApiOperation)({ summary: 'Deleted max-delivery-campaign' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'deleted max-delivery-campaign successfully' }),
+    (0, swagger_1.ApiResponse)({ status: 400, description: 'Invalid Input' }),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
 ], MaxDeliveryCampaignController.prototype, "remove", null);
 exports.MaxDeliveryCampaignController = MaxDeliveryCampaignController = __decorate([
+    (0, swagger_1.ApiTags)('max-delivery-campaign'),
     (0, common_1.Controller)('max-delivery-campaign'),
     __metadata("design:paramtypes", [max_delivery_campaign_service_1.MaxDeliveryCampaignService])
 ], MaxDeliveryCampaignController);

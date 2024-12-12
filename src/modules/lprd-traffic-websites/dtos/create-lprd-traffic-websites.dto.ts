@@ -1,9 +1,11 @@
-import { IsNotEmpty } from "class-validator"
+import { IsNotEmpty } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+
 export class CreateLprdTrafficWebsiteDto {
-
-
-    @IsNotEmpty()
-    name:string
-
-  }
-  
+  @ApiProperty({
+    description: 'The name of the LPRD traffic website',
+    example: 'Traffic Monitoring Website',
+  })
+  @IsNotEmpty()
+  name: string;
+}

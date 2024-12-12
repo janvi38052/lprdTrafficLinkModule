@@ -17,6 +17,8 @@ import { LprdTrafficWebsitesModule } from './modules/lprd-traffic-websites/lprd-
 import { LprdTrafficWebsite } from './modules/lprd-traffic-websites/entities/lprd-traffic-websites.entity';
 import { UserModule } from './modules/user/user.module';
 import { User } from './modules/user/entities/user.entity';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -26,7 +28,7 @@ import { User } from './modules/user/entities/user.entity';
       port: 3306,
       username: 'root',
       password: 'root',   
-      database: 'collegedb',
+      database: 'npm',
       entities: [LprdTrafficLinks,LprdTrafficLinksCategory,LprdTrafficLinksClient,LprdTrafficLinksCampaign,MaxDeliveryClient,MaxDeliveryCampaign,LprdTrafficSource,LprdTrafficWebsite,User],
       synchronize: true,       
       logging: true,
@@ -39,7 +41,9 @@ import { User } from './modules/user/entities/user.entity';
     MaxDeliveryCampaignModule,
     LprdtrafficsourceModule,
     LprdTrafficWebsitesModule,
-    UserModule
+    UserModule,
+    AuthModule,
+    UsersModule
     
  
 
