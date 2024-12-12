@@ -28,7 +28,13 @@ const user_module_1 = require("./modules/user/user.module");
 const user_entity_1 = require("./modules/user/entities/user.entity");
 const auth_module_1 = require("./auth/auth.module");
 const users_module_1 = require("./users/users.module");
+const logger_middleware_1 = require("./middleware/logger.middleware");
 let AppModule = class AppModule {
+    configure(consumer) {
+        consumer
+            .apply(logger_middleware_1.LoggerMiddleware)
+            .forRoutes('*');
+    }
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([

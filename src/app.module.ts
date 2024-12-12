@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LprdTrafficLinksModule } from './modules/lprd-traffic-links/lprd-traffic-links.module';
 import { LprdTrafficLinks } from './modules/lprd-traffic-links/entities/lprd-traffic-links.entity';
@@ -19,6 +19,7 @@ import { UserModule } from './modules/user/user.module';
 import { User } from './modules/user/entities/user.entity';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
+import { LoggerMiddleware } from './middleware/logger.middleware';
 
 @Module({
   imports: [
@@ -44,11 +45,15 @@ import { UsersModule } from './users/users.module';
     UserModule,
     AuthModule,
     UsersModule
-    
- 
-
   ],
+
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+      configure(consumer: MiddlewareConsumer) {
+        consumer
+        .apply(LoggerMiddleware)
+        .forRoutes('*')
+      }
+}
